@@ -26,4 +26,4 @@ def colorize():
 if __name__ == "___main__":
     # when launching a flask app to production environment make debug false
     # debug = true - so that when we change the file the server will restart itself
-    app.run(port = 3000, debug = True)
+    app.run()
