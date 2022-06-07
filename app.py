@@ -4,6 +4,7 @@ import urllib.request
 import os
 from flask import Flask, render_template, url_for, request, flash, redirect
 from werkzeug.utils import secure_filename
+from zhangetal import generate_images
 
 # import the dataset here
 # SAMPLE: from sklearn.datasets import load_iris
