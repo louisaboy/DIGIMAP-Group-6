@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from colorizers import *
 
 def generate_images(img_path="", use_gpu=False):
@@ -21,8 +22,9 @@ def generate_images(img_path="", use_gpu=False):
 	out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
 	out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
 
-	return img_bw, out_img_eccv16, out_img_siggraph17
-
+	plt.imsave('static/outputs/eccv16.png', out_img_eccv16)
+	plt.imsave('static/outputs/siggraph17.png', out_img_siggraph17)
+	
 # plt.imsave('%s_eccv16.png'%opt.save_prefix, out_img_eccv16)
 # plt.imsave('%s_siggraph17.png'%opt.save_prefix, out_img_siggraph17)
 
