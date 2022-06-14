@@ -4,6 +4,7 @@ import urllib.request
 import os
 from flask import Flask, render_template, url_for, request, flash, redirect
 from werkzeug.utils import secure_filename
+from colorizers.siggraph17 import siggraph17
 from zhangetal import generate_images
 
 # import the dataset here
@@ -13,7 +14,7 @@ from zhangetal import generate_images
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'uploads/'
+UPLOAD_FOLDER = 'static/uploads/'
 
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -46,9 +47,11 @@ def upload_image():
         filename = secure_filename(file.filename)
         # file_path = "./uploads/" + file.filename
         # file.save(file_path)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
         #print('upload_image filename: ' + filename)
         flash('Image successfully uploaded and displayed below')
+        generate_images(filepath)
         return render_template('index.html', filename=filename)
     else:
         flash('Allowed image types are - png, jpg, jpeg, gif')
@@ -62,4 +65,4 @@ def display_image(filename):
 if __name__ == "___main__":
     # when launching a flask app to production environment make debug false
     # debug = true - so that when we change the file the server will restart itself
-    app.run(port=3000,debug=true)
+    app.run(port=3000,debug=True)
