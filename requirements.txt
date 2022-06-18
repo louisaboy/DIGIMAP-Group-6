@@ -33,7 +33,7 @@ scikit-image==0.19.3
 scipy==1.7.3
 six==1.16.0
 stack-data==0.2.0
-tifffile==2022.5.4
+tifffile==2021.11.2
 torch==1.11.0
 traitlets==5.2.2.post1
 typing_extensions==4.2.0
