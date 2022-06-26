@@ -1,9 +1,100 @@
-body {
-    font-style: italic;
-    font-family: 'Times New Roman', Times, Serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Poppins:wght@400;700&display=swap');
+:root{
+    --color-white: var(--color-white); 
+    --color-pink: #FF508F;
+    --color-yellow: #FFC700; 
+    --color-violet: #120753; 
+    --color-gray: #8A8A8A; 
+    --color-bg-white: #FCFCFC; 
+    --color-bg-gray: #ececec; 
+
+}
+.font-extra-bold{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:800;
 }
 
-img{
-    max-width: 30%;
-    max-height: 30%;
+.font-bold{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.font-medium{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.color-pink{
+    color: var(--color-pink);
+}
+
+.color-yellow{
+    color: var(--color-yellow);
+}
+
+.color-violet{
+    color: var(--color-violet);
+}
+
+.color-white{
+    color: white;
+}
+
+.color-gray{
+    color: gray;
+}
+.bg-white{
+    background: var(--color-bg-white);
+}
+
+.bg-gray{
+    background: var(--color-bg-gray);
+}
+
+.sec1{
+    background: url('/static/img/sec1.png');
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    align-items: flex-end;
+}
+
+.sec1-title{
+    font-size:calc(30px + 3.5vw);
+}
+
+.primary-button{
+    background: var(--color-pink);
+    width: 250px;
+    border-color: transparent !important;
+
+}
+
+.secondary-button{
+    width: 250px;
+    background: transparent !important;
+    border-color: var(--color-pink) !important;
+    
+}
+
+#sec2{
+    background: var(--color-bg-white);
+    width: 100vw;
+    min-height: 100vh;
+}
+
+#upload-image{
+    
+}
+
+label{
+    background-color: var(--color-bg-gray);
+    border: 3px dashed var(--color-violet);
+    height: 50vh;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 50px;
+    vertical-align: auto;
 }

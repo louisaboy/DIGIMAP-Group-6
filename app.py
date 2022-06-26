@@ -50,11 +50,11 @@ def upload_image():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         #print('upload_image filename: ' + filename)
-        flash('Image successfully uploaded and displayed below')
+        flash('Image successfully uploaded')
         generate_images(filepath)
         return render_template('index.html', filename=filename)
     else:
-        flash('Allowed image types are - png, jpg, jpeg, gif')
+        flash('Allowed image types are - png, jpg, jpeg')
         return redirect(request.url)
  
 @app.route('/display/<filename>')
@@ -65,4 +65,5 @@ def display_image(filename):
 if __name__ == "___main__":
     # when launching a flask app to production environment make debug false
     # debug = true - so that when we change the file the server will restart itself
-    app.run(port=3000,debug=True)
+    app.run(debug=True)
+    app.debug=True
