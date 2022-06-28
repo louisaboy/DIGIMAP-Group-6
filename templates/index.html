@@ -6,41 +6,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask Application</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />        
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
+
+<!-- STARTOF SECTION 1 -->
+
 <body>
-    <p><h1 align="center">Python Flask Upload and display image</h1></p>
-    <div class="container">
-    <div class="row">
-        <h2>Select a file to upload</h2>
-        <p>
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <ul>
-                {% for message in messages %}
-                  <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-              {% endif %}
-            {% endwith %}
-        </p>
-        {% if filename %}
-            <div>
-                <img src="{{ url_for('display_image', filename=filename) }}">
+    <div class="sec1">
+        <div class="container h-100 d-flex">
+            <div class=" sec1-content flex-column align-bottom h-100">
+                <h1 class="font-extra-bold sec1-title align-bottom">COLORFUL IMAGE COLORIZATION</h1>
+
+                <h6 class="font-medium mt-5">implemented by:</h6>
+                <h4 class="font-medium mb-4">ABOY • CAMPOS • CRUZ • TAN | S14</h4> 
+                
+                <div class="d-flex flex-wrap">
+                    <a href="#colorize"><button  class="p-2 px-4 primary-button rounded-pill font-bold color-white mt-2 me-3">START COLORIZING</button></a>
+                    <a href="#learn-more"><button href=".sec3" class="p-2 px-4 secondary-button rounded-pill font-bold color-white mt-2">LEARN MORE</button></a>
+                </div>
+                
             </div>
-        {% endif %}
-        <form method="post" action="/" enctype="multipart/form-data">
-            <dl>
-                <p>
-                    <input type="file" name="file" class="form-control" autocomplete="off" required>
-                </p>
-            </dl>
+            
+        </div>
+    </div>
+
+<!-- END OF SECTION 1-->
+
+<!-- START OF SECTION 2 -->
+    <div id="colorize">
+        <p hidden>temp</p>
+        <div class="container mt-5 px-3">
+            <div class="sec2-content">
+                <form method="post" action="/" enctype="multipart/form-data">
+                    <!-- TODO: Show image upon upload, not just when submit is clicked  -->
+                    <label for="file" class="d-flex mt-5">
+                        <div class="d-flex rounded text-center color-violet flex-column h-100 my-auto label-content">
+                            <h1 class="font-bold mt-5">Click here to upload your image</h1>
+                            <h5 class="font-medium color-gray mt-4">Accepted format: .JPG, .JPEG, .PNG</h5>
+                        </div>
+                    </label>
+                    <input type="file" name="file" id="file" required hidden>
+                    
+                    <p class="font-medium text-center mt-3">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            
+                            {% for message in messages %}
+                            {{ message }}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </p>
+
+
+                    <div class="d-flex mt-3">
+                        <button  class="p-2 px-4 secondary-button rounded-pill font-bold mt-2 me-auto color-pink">CLEAR</button>
+                        <input type="submit" class="p-2 px-4 primary-button rounded-pill font-bold color-white mt-2 ms-auto"></input>    
+                    </div>
+                </form>
+            </div>
+
+            
+
+            {% if filename %}
+                <div>
+                    <img src="{{ url_for('display_image', filename=filename) }}">
+                </div>
+            {% endif %}
+
+
+           
+            
+        </div>
+
+        </div>
+
+    </div>
+<!-- END OF SECTION 2 -->
+
+<!-- SECTION 3 -->
+<div id="learn-more">
+
+    <div class="container pt-5">
+        <h1 class="font-extra-bold color-yellow sec3-title mt-3">COLORFUL IMAGE COLORIZATION</h1>
+        <h5 class="font-medium color-white mt-3">A study by Richard Zhang, Phillip Isola, Alexei A. Efros (2018)</h5>
+        
+        <div class="d-flex sm:flex-column flex-row">
+            <div class="me-3 mt-5">
+                <h4>Given a grayscale photograph as input, Zhang et al. (2018) addressed the issue of hallucinating a plausible color version of the photograph. They proposed a fully automatic approach that produces vibrant and realistic colorizations by posing it as a classification task. Their method shows that colorization can be a powerful pretext task for self-supervised feature learning, acting as a cross-channel encoder. This approach results in state-of-the-art performance on several feature learning benchmarks.</h4>
+            </div>
+                
+            <div class="ms-3 mt-1">
+                <img src="/static/img/img.png" alt="img" class="img-zhang w-80">
+            </div>
+        </div>
+        
+        
+    </div>
+</div> 
+
+<!--          
+        <p><h1 align="center">Python Flask Upload and display image sdsds</h1></p>
+        <div class="container">
+        <div class="row">
+            <h2>Select a file to upload</h2>
             <p>
-                <input type="submit" value="Submit" class="btn btn-info">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
             </p>
-        </form>
-    </div>
-    </div>
+            {% if filename %}
+                <div>
+                    <img src="{{ url_for('display_image', filename=filename) }}">
+                </div>
+            {% endif %}
+            <form method="post" action="/" enctype="multipart/form-data">
+                <dl>
+                    <p>
+                        <input type="file" name="file" class="form-control" autocomplete="off" required>
+                    </p>
+                </dl>
+                <p>
+                    <input type="submit" value="Submit" class="btn btn-info">
+                </p>
+            </form>
+        </div>
+        </div>  -->
+
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
+
