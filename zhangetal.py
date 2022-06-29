@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
 from colorizers import *
+from PIL import Image
+from io import BytesIO
+import numpy as np
+import base64
 
 def generate_images(img_path="", use_gpu=False):
 	# load colorizers
@@ -20,32 +24,15 @@ def generate_images(img_path="", use_gpu=False):
 	# resize and concatenate to original L channel
 	img_bw = postprocess_tens(tens_l_orig, torch.cat((0*tens_l_orig,0*tens_l_orig),dim=1))
 	out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
-	out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
+	# print(out_img_eccv16[0, 0, :])
+	# print(out_img_eccv16[0, 0, :] * 255)
 
-	plt.imsave('static/outputs/eccv16.png', out_img_eccv16)
-	plt.imsave('static/outputs/siggraph17.png', out_img_siggraph17)
-	
-# plt.imsave('%s_eccv16.png'%opt.save_prefix, out_img_eccv16)
-# plt.imsave('%s_siggraph17.png'%opt.save_prefix, out_img_siggraph17)
+	output = Image.fromarray((out_img_eccv16*255).astype(np.uint8))
+	# print(output.getpixel((0, 0)))
+	buffered = BytesIO()
+	output.save(buffered, 'PNG')
 
-# plt.figure(figsize=(12,8))
-# plt.subplot(2,2,1)
-# plt.imshow(img)
-# plt.title('Original')
-# plt.axis('off')
+	buffered.seek(0)
+	im_64 = base64.b64encode(buffered.read()).decode()
 
-# plt.subplot(2,2,2)
-# plt.imshow(img_bw)
-# plt.title('Input')
-# plt.axis('off')
-
-# plt.subplot(2,2,3)
-# plt.imshow(out_img_eccv16)
-# plt.title('Output (ECCV 16)')
-# plt.axis('off')
-
-# plt.subplot(2,2,4)
-# plt.imshow(out_img_siggraph17)
-# plt.title('Output (SIGGRAPH 17)')
-# plt.axis('off')
-# plt.show()
+	return im_64

@@ -75,7 +75,11 @@
                 </div>
             {% endif %}
 
-
+            {% if base64 %}
+                <div>
+                    <img src="data:image/png;base64, {{ base64 }}">
+                </div>
+            {% endif %}
            
             
         </div>

@@ -1,5 +1,6 @@
 # render_template - return an html page
 #  url_for - used to link the css file to the html file
+import base64
 import urllib.request
 import os
 from flask import Flask, render_template, url_for, request, flash, redirect
@@ -51,8 +52,7 @@ def upload_image():
         file.save(filepath)
         #print('upload_image filename: ' + filename)
         flash('Image successfully uploaded')
-        generate_images(filepath)
-        return render_template('index.html', filename=filename)
+        return render_template('index.html', filename=filename, base64=generate_images(filepath))
     else:
         flash('Allowed image types are - png, jpg, jpeg')
         return redirect(request.url)
