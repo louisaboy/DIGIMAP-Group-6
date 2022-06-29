@@ -4,3 +4,5 @@ static/outputs/siggraph17.png
 static/uploads/Andrew_Braithwaite_Japan_BW-1-2.jpg
 node_modules/
 colorizers/
+colorizers/__pycache__/
+*.pyc
