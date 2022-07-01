@@ -38,18 +38,25 @@
         <p hidden>temp</p>
         <div class="container mt-5 px-3">
             <div class="sec2-content">
-                <form method="post" action="/" enctype="multipart/form-data">
                     <!-- TODO: Show image upon upload, not just when submit is clicked  -->
-                    <label for="file" class="d-flex mt-5">
                         <div class="d-flex rounded text-center color-violet flex-column h-100 my-auto label-content">
-                            <h1 class="font-bold mt-5">Click here to upload your image</h1>
-                            <h5 class="font-medium color-gray mt-4">Accepted format: .JPG, .JPEG, .PNG</h5>
+                            <!-- <h1 class="font-bold mt-5">Click here to upload your image</h1>
+                            <h5 class="font-medium color-gray mt-4">Accepted format: .JPG, .JPEG, .PNG</h5> -->
+                            <div class = "figurecontainer" style ="justify-content: center; align-items: center;">
+                                <figure style="float:left; padding-right: 20px;">
+                                    <img src="{{ url_for('display_image', filename=filename) }}" width = "500" height="auto" />
+                                    <figcaption class="font-bold mt-5"> Grayscale Image </figcaption>
+                                </figure>
+                                <figure style="float:left;">
+                                    <img src="data:image/png;base64, {{ base64 }}" width = "500" height="auto" />
+                                    <figcaption class="font-bold mt-5"> Colorized Image </figcaption>
+                                </figure>
+                            </div>
                         </div>
-                    </label>
                     <!-- <input accept="image/*" type="file" name="file" id="file" required hidden>
                     <img id = "image" /> -->
 
-                    <input accept="image/*" type="file" id="file" name = "file" required hidden/>
+                    <!-- <input accept="image/*" type="file" id="file" name = "file" required hidden/>
                     <h3 class="font-bold mt-5">Image preview</h3>
                     <p style="text-align: center;"><img id="image" style="padding-top: 25px; padding-bottom: 25px;" width = "500" height = "auto"/> </p>
                     
@@ -62,14 +69,12 @@
                             {% endfor %}
                         {% endif %}
                         {% endwith %}
-                    </p>
+                    </p> -->
 
 
                     <div class="d-flex mt-3">
-                        <button  class="p-2 px-4 secondary-button rounded-pill font-bold mt-2 me-auto color-pink">CLEAR</button>
-                        <input type="submit" class="p-2 px-4 primary-button rounded-pill font-bold color-white mt-2 ms-auto"></input>    
+                        <a href="/"> <button class="p-2 px-4 primary-button rounded-pill font-bold color-white mt-2 ms-auto" style = "float: right;"> Colorize Again </button></a>
                     </div>
-                </form>
             </div>
 
             

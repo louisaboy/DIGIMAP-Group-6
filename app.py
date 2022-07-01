@@ -52,7 +52,7 @@ def upload_image():
         file.save(filepath)
         #print('upload_image filename: ' + filename)
         flash('Image successfully uploaded')
-        return render_template('index.html', filename=filename, base64=generate_images(filepath))
+        return render_template('new-index.html', filename=filename, base64=generate_images(filepath))
     else:
         flash('Allowed image types are - png, jpg, jpeg')
         return redirect(request.url)
