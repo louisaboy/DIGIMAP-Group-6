@@ -20,6 +20,12 @@
   /* 2 */
 }
 
+.figurecontainer{
+  display:inline-block; 
+  justify-content: center; 
+  align-items: center;
+}
+
 ::before,
 ::after {
   --tw-content: '';
