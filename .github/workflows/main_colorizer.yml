@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'Azure for Students'
+          appName: 'colorizer'
+          package: $(System.DefaultWorkingDirectory)/**/*.zip  
+      
       - uses: actions/checkout@v2
 
       - name: Set up Python version
@@ -30,11 +36,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       
-      - task: AzureWebApp@1
-        inputs:
-          azureSubscription: 'Azure for Students'
-          appName: 'colorizer'
-          package: $(System.DefaultWorkingDirectory)/**/*.zip  
+      
           
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
