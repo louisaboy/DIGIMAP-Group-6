@@ -15,11 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - task: AzureWebApp@1
-        inputs:
-          azureSubscription: 'Azure for Students'
-          appName: 'colorizer'
-          package: $(System.DefaultWorkingDirectory)/**/*.zip  
       
       - uses: actions/checkout@v2
 
