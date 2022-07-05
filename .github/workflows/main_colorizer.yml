@@ -29,7 +29,13 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-        
+      
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'Azure for Students'
+          appName: 'colorizer'
+          package: $(System.DefaultWorkingDirectory)/**/*.zip  
+          
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Upload artifact for deployment jobs
